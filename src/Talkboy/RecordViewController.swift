@@ -57,9 +57,9 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "showPlayback") {
-            let navVC = segue.destinationViewController as UINavigationController
-            let playbackVC = navVC.topViewController as PlaybackViewController
-            playbackVC.recordedAudio = sender as RecordedAudio
+            let navVC = segue.destinationViewController as! UINavigationController
+            let playbackVC = navVC.topViewController as! PlaybackViewController
+            playbackVC.recordedAudio = sender as! RecordedAudio
         }
     }
 
@@ -82,7 +82,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     }
 
     func timestampedFilePath() -> NSURL {
-        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         let currentDateTime = NSDate()
         let formatter = NSDateFormatter()
         formatter.dateFormat = "ddMMyyyy-HHmmss"
@@ -104,7 +104,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
 
         AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
 
-        var audioRecorder = AVAudioRecorder(URL: filePath, settings: recorderSettings, error: nil)
+        var audioRecorder = AVAudioRecorder(URL: filePath, settings: recorderSettings as [NSObject : AnyObject], error: nil)
         audioRecorder.meteringEnabled = true
         audioRecorder.prepareToRecord()
 

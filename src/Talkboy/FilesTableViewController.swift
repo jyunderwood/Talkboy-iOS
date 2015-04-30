@@ -11,13 +11,13 @@ import UIKit
 class FilesTableViewController: UITableViewController
 {
     var dirPath: String {
-        return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
     }
 
     var fileList: [NSString]! {
         let manager = NSFileManager.defaultManager()
-        let files = manager.contentsOfDirectoryAtPath(dirPath, error: nil) as [NSString]
-        return files.sorted { $0.localizedCaseInsensitiveCompare($1) == NSComparisonResult.OrderedDescending }
+        let files = manager.contentsOfDirectoryAtPath(dirPath, error: nil) as! [NSString]
+        return files.sorted { $0.localizedCaseInsensitiveCompare($1 as String) == NSComparisonResult.OrderedDescending }
     }
 
     override func viewDidLoad() {
@@ -41,10 +41,10 @@ class FilesTableViewController: UITableViewController
             let filePath = NSURL.fileURLWithPathComponents(pathArray)
 
             audioFile.filePathUrl = filePath
-            audioFile.title = fileList[indexPath!.row]
+            audioFile.title = fileList[indexPath!.row] as! String
 
-            let navVC = segue.destinationViewController as UINavigationController
-            let playbackVC = navVC.topViewController as PlaybackViewController
+            let navVC = segue.destinationViewController as! UINavigationController
+            let playbackVC = navVC.topViewController as! PlaybackViewController
             playbackVC.recordedAudio = audioFile
         }
     }
@@ -64,8 +64,8 @@ class FilesTableViewController: UITableViewController
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("fileCell", forIndexPath: indexPath) as UITableViewCell
-        cell.textLabel?.text = fileList[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("fileCell", forIndexPath: indexPath) as! UITableViewCell
+        cell.textLabel?.text = fileList[indexPath.row] as String
 
         return cell
     }
