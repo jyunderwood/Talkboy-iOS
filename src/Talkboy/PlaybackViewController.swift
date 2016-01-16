@@ -11,7 +11,7 @@ import AVFoundation
 
 class PlaybackViewController: UIViewController
 {
-    var audioFile:AVAudioFile!
+    var audioFile: AVAudioFile!
     var recordedAudio: RecordedAudio!
     var isQueued: Bool = false
 
@@ -57,8 +57,8 @@ class PlaybackViewController: UIViewController
         navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
         navigationItem.leftItemsSupplementBackButton = true
 
-        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: nil)
-        audioFile = AVAudioFile(forReading: recordedAudio.filePathUrl, error: nil)
+        try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        try! audioFile = AVAudioFile(forReading: recordedAudio.filePathUrl)
 
         setupAudioEngine()
         rewindAction(self)
@@ -74,6 +74,6 @@ class PlaybackViewController: UIViewController
         audioEngine.attachNode(changePitchEffect)
         audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
         audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
-        audioEngine.startAndReturnError(nil)
+        try! audioEngine.start()
     }
 }

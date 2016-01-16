@@ -38,10 +38,10 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        audioRecorder = audioRecorder(NSURL(fileURLWithPath:"/dev/null")!)
+        audioRecorder = audioRecorder(NSURL(fileURLWithPath:"/dev/null"))
         audioRecorder.record()
 
-        var displayLink = CADisplayLink(target: self, selector: Selector("updateMeters"))
+        let displayLink = CADisplayLink(target: self, selector: Selector("updateMeters"))
         displayLink.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
     }
 
@@ -65,7 +65,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
 
     func updateMeters() {
         audioRecorder.updateMeters()
-        var normalizedValue = pow(10, audioRecorder.averagePowerForChannel(0) / 20)
+        let normalizedValue = pow(10, audioRecorder.averagePowerForChannel(0) / 20)
         waveformView.updateWithLevel(CGFloat(normalizedValue))
     }
 
@@ -78,11 +78,11 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
 
     func stopRecordingAudio() {
         audioRecorder.stop()
-        AVAudioSession.sharedInstance().setActive(false, error: nil)
+        try! AVAudioSession.sharedInstance().setActive(false)
     }
 
     func timestampedFilePath() -> NSURL {
-        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
         let currentDateTime = NSDate()
         let formatter = NSDateFormatter()
         formatter.dateFormat = "ddMMyyyy-HHmmss"
@@ -90,21 +90,21 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         let pathArray = [dirPath, recordingName]
         let filePath = NSURL.fileURLWithPathComponents(pathArray)
 
-        println(filePath)
+        print(filePath)
         return filePath!
     }
 
     func audioRecorder(filePath: NSURL) -> AVAudioRecorder {
-        let recorderSettings = [
+        let recorderSettings: [String : AnyObject] = [
             AVSampleRateKey: 44100.0,
-            AVFormatIDKey: kAudioFormatMPEG4AAC,
+            AVFormatIDKey: NSNumber(unsignedInt: kAudioFormatMPEG4AAC),
             AVNumberOfChannelsKey: 2,
             AVEncoderAudioQualityKey: AVAudioQuality.Min.rawValue
         ]
 
-        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
+        try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
 
-        var audioRecorder = AVAudioRecorder(URL: filePath, settings: recorderSettings as [NSObject : AnyObject], error: nil)
+        let audioRecorder = try! AVAudioRecorder(URL: filePath, settings: recorderSettings)
         audioRecorder.meteringEnabled = true
         audioRecorder.prepareToRecord()
 
@@ -113,15 +113,11 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
 
     // MARK: - AVAudioRecorder
 
-    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
-        if (flag) {
-            recordedAudio.filePathUrl = recorder.url
-            recordedAudio.title = recorder.url.lastPathComponent
+    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!) {
+        recordedAudio.filePathUrl = recorder.url
+        recordedAudio.title = recorder.url.lastPathComponent
 
-            NSNotificationCenter.defaultCenter().postNotificationName("recordedAudio.saved", object: nil)
-            performSegueWithIdentifier("showPlayback", sender: recordedAudio)
-        } else {
-            println("Error")
-        }
+        NSNotificationCenter.defaultCenter().postNotificationName("recordedAudio.saved", object: nil)
+        performSegueWithIdentifier("showPlayback", sender: recordedAudio)
     }
 }

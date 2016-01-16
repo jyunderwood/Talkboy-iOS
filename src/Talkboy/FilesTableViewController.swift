@@ -11,13 +11,13 @@ import UIKit
 class FilesTableViewController: UITableViewController
 {
     var dirPath: String {
-        return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+        return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
     }
 
-    var fileList: [NSString]! {
+    var fileList: [String]! {
         let manager = NSFileManager.defaultManager()
-        let files = manager.contentsOfDirectoryAtPath(dirPath, error: nil) as! [NSString]
-        return files.sorted { $0.localizedCaseInsensitiveCompare($1 as String) == NSComparisonResult.OrderedDescending }
+        let files = try! manager.contentsOfDirectoryAtPath(dirPath)
+        return files.sort { $0.localizedCaseInsensitiveCompare($1) == NSComparisonResult.OrderedDescending }
     }
 
     override func viewDidLoad() {
@@ -36,12 +36,12 @@ class FilesTableViewController: UITableViewController
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "showPlayback") {
             let audioFile = RecordedAudio()
-            let indexPath = tableView.indexPathForSelectedRow()
+            let indexPath = tableView.indexPathForSelectedRow
             let pathArray = [dirPath, fileList[indexPath!.row]]
             let filePath = NSURL.fileURLWithPathComponents(pathArray)
 
             audioFile.filePathUrl = filePath
-            audioFile.title = fileList[indexPath!.row] as! String
+            audioFile.title = fileList[indexPath!.row]
 
             let navVC = segue.destinationViewController as! UINavigationController
             let playbackVC = navVC.topViewController as! PlaybackViewController
@@ -64,7 +64,7 @@ class FilesTableViewController: UITableViewController
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("fileCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("fileCell", forIndexPath: indexPath)
         cell.textLabel?.text = fileList[indexPath.row] as String
 
         return cell
@@ -79,7 +79,7 @@ class FilesTableViewController: UITableViewController
             let pathArray = [dirPath, fileList[indexPath.row]]
             let filePath = NSURL.fileURLWithPathComponents(pathArray)
 
-            NSFileManager.defaultManager().removeItemAtURL(filePath!, error: nil)
+            try! NSFileManager.defaultManager().removeItemAtURL(filePath!)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
