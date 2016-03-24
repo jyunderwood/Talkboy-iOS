@@ -11,8 +11,8 @@ import Darwin
 
 let pi = M_PI
 
-@IBDesignable class SiriWaveformView: UIView
-{
+@IBDesignable
+class SiriWaveformView: UIView {
     private var _phase: CGFloat = 0.0
     private var _amplitude: CGFloat = 0.0
 
@@ -44,12 +44,12 @@ let pi = M_PI
         backgroundColor?.set()
         CGContextFillRect(context, rect)
 
-        // We draw multiple sinus waves, with equal phases but altered
+        // Draw multiple sinus waves, with equal phases but altered
         // amplitudes, multiplied by a parable function.
-        for var i = 0; i < numberOfWaves; i++ {
+        for waveNumber in 0...numberOfWaves {
             let context = UIGraphicsGetCurrentContext()
 
-            CGContextSetLineWidth(context, (i == 0 ? primaryWaveLineWidth : secondaryWaveLineWidth))
+            CGContextSetLineWidth(context, (waveNumber == 0 ? primaryWaveLineWidth : secondaryWaveLineWidth))
 
             let halfHeight = CGRectGetHeight(bounds) / 2.0
             let width = CGRectGetWidth(bounds)
@@ -58,20 +58,20 @@ let pi = M_PI
             let maxAmplitude = halfHeight - 4.0 // 4 corresponds to twice the stroke width
 
             // Progress is a value between 1.0 and -0.5, determined by the current wave idx, which is used to alter the wave's amplitude.
-            let progress = CGFloat(1.0 - Float(i) / Float(numberOfWaves))
+            let progress: CGFloat = 1.0 - CGFloat(waveNumber) / CGFloat(numberOfWaves)
             let normedAmplitude = (1.5 * progress - 0.5) * amplitude
 
-            // var multiplier = CGFloat(min(1.0, (progress / 3.0 * 2.0) + (1.0 / 3.0)))
-            let multiplier = CGFloat(1.0)
+            let multiplier: CGFloat = 1.0
             waveColor.colorWithAlphaComponent(multiplier * CGColorGetAlpha(waveColor.CGColor)).set()
 
-            for var x: CGFloat = 0.0; x < width + density; x += density {
-                // We use a parable to scale the sinus wave, that has its peak in the middle of the view.
+            var x: CGFloat = 0.0
+            while x < width + density {
+                // Use a parable to scale the sinus wave, that has its peak in the middle of the view.
                 let scaling = -pow(1 / mid * (x - mid), 2) + 1
 
                 // Original Code:
                 // CGFloat y = scaling * maxAmplitude * normedAmplitude * sinf(2 * M_PI *(x / width) * self.frequency + self.phase) + halfHeight;
-                let tempCasting = CGFloat(2.0 * Float(pi) * Float(x / width)) * frequency + _phase
+                let tempCasting: CGFloat = 2.0 * CGFloat(pi) * CGFloat(x / width) * frequency + _phase
                 let y = scaling * maxAmplitude * normedAmplitude * CGFloat(sinf(Float(tempCasting))) + halfHeight
 
                 if x == 0 {
@@ -79,6 +79,8 @@ let pi = M_PI
                 } else {
                     CGContextAddLineToPoint(context, x, y)
                 }
+
+                x += density
             }
             
             CGContextStrokePath(context)
