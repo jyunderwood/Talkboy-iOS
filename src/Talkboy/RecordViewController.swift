@@ -41,7 +41,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         audioRecorder = audioRecorder(NSURL(fileURLWithPath:"/dev/null"))
         audioRecorder.record()
 
-        let displayLink = CADisplayLink(target: self, selector: Selector("updateMeters"))
+        let displayLink = CADisplayLink(target: self, selector: #selector(RecordViewController.updateMeters))
         displayLink.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
     }
 

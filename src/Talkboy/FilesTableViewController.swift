@@ -24,7 +24,7 @@ class FilesTableViewController: UITableViewController
         super.viewDidLoad()
 
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "recordedAudioInserted:",
+            selector: #selector(FilesTableViewController.recordedAudioInserted(_:)),
             name: "recordedAudio.saved",
             object: nil)
     }
