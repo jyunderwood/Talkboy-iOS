@@ -12,9 +12,9 @@
 		AB857CB91AB268A1007F44BA /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB857CB81AB268A1007F44BA /* RecordViewController.swift */; };
 		AB857CBC1AB268A1007F44BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB857CBA1AB268A1007F44BA /* Main.storyboard */; };
 		AB857CBE1AB268A1007F44BA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB857CBD1AB268A1007F44BA /* Images.xcassets */; };
-		AB857CC11AB268A1007F44BA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB857CBF1AB268A1007F44BA /* LaunchScreen.xib */; };
 		AB86C8FF1AB654630015DFC7 /* SiriWaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB86C8FE1AB654630015DFC7 /* SiriWaveformView.swift */; };
 		ABAFFFEA1ABDF72E007C235B /* FilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAFFFE91ABDF72E007C235B /* FilesTableViewController.swift */; };
+		ABBCCC631CA43BBF003275F2 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABBCCC621CA43BBF003275F2 /* Launch Screen.storyboard */; };
 		ABBF5DBA1AB380CF007F0C8E /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBF5DB91AB380CF007F0C8E /* RecordedAudio.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,9 +26,9 @@
 		AB857CB81AB268A1007F44BA /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		AB857CBB1AB268A1007F44BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB857CBD1AB268A1007F44BA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		AB857CC01AB268A1007F44BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AB86C8FE1AB654630015DFC7 /* SiriWaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiriWaveformView.swift; sourceTree = "<group>"; };
 		ABAFFFE91ABDF72E007C235B /* FilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesTableViewController.swift; sourceTree = "<group>"; };
+		ABBCCC621CA43BBF003275F2 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		ABBF5DB91AB380CF007F0C8E /* RecordedAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,7 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				AB857CB61AB268A1007F44BA /* AppDelegate.swift */,
-				AB857CBF1AB268A1007F44BA /* LaunchScreen.xib */,
+				ABBCCC621CA43BBF003275F2 /* Launch Screen.storyboard */,
 				AB857CBD1AB268A1007F44BA /* Images.xcassets */,
 				AB857CB51AB268A1007F44BA /* Info.plist */,
 			);
@@ -110,7 +110,8 @@
 		AB857CA91AB268A1007F44BA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Jonathan Underwood";
 				TargetAttributes = {
 					AB857CB01AB268A1007F44BA = {
@@ -141,8 +142,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABBCCC631CA43BBF003275F2 /* Launch Screen.storyboard in Resources */,
 				AB857CBC1AB268A1007F44BA /* Main.storyboard in Resources */,
-				AB857CC11AB268A1007F44BA /* LaunchScreen.xib in Resources */,
 				AB857CBE1AB268A1007F44BA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -174,14 +175,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		AB857CBF1AB268A1007F44BA /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AB857CC01AB268A1007F44BA /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -205,6 +198,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -271,6 +265,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Talkboy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jyunderwood.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -282,6 +277,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Talkboy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jyunderwood.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
