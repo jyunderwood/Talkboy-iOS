@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB181A011D6612E7008F7222 /* RecordingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB181A001D6612E7008F7222 /* RecordingsManager.swift */; };
 		AB5B8C2E1AB36CB3001C7751 /* PlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B8C2D1AB36CB3001C7751 /* PlaybackViewController.swift */; };
 		AB857CB71AB268A1007F44BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB857CB61AB268A1007F44BA /* AppDelegate.swift */; };
 		AB857CB91AB268A1007F44BA /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB857CB81AB268A1007F44BA /* RecordViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB181A001D6612E7008F7222 /* RecordingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingsManager.swift; sourceTree = "<group>"; };
 		AB5B8C2D1AB36CB3001C7751 /* PlaybackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackViewController.swift; sourceTree = "<group>"; };
 		AB857CB11AB268A1007F44BA /* Talkboy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Talkboy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB857CB51AB268A1007F44BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,6 +45,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB1819FF1D66119F008F7222 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ABBF5DB91AB380CF007F0C8E /* RecordedAudio.swift */,
+				AB181A001D6612E7008F7222 /* RecordingsManager.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		AB857CA81AB268A1007F44BA = {
 			isa = PBXGroup;
 			children = (
@@ -62,7 +73,7 @@
 		AB857CB31AB268A1007F44BA /* Talkboy */ = {
 			isa = PBXGroup;
 			children = (
-				ABBF5DB91AB380CF007F0C8E /* RecordedAudio.swift */,
+				AB1819FF1D66119F008F7222 /* Models */,
 				AB857CB81AB268A1007F44BA /* RecordViewController.swift */,
 				AB5B8C2D1AB36CB3001C7751 /* PlaybackViewController.swift */,
 				ABAFFFE91ABDF72E007C235B /* FilesTableViewController.swift */,
@@ -162,6 +173,7 @@
 				AB857CB91AB268A1007F44BA /* RecordViewController.swift in Sources */,
 				AB857CB71AB268A1007F44BA /* AppDelegate.swift in Sources */,
 				ABAFFFEA1ABDF72E007C235B /* FilesTableViewController.swift in Sources */,
+				AB181A011D6612E7008F7222 /* RecordingsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

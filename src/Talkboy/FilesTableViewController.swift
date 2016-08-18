@@ -8,17 +8,8 @@
 
 import UIKit
 
-class FilesTableViewController: UITableViewController
-{
-    var dirPath: String {
-        return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-    }
-
-    var fileList: [String]! {
-        let manager = FileManager.default
-        let files = try! manager.contentsOfDirectory(atPath: dirPath)
-        return files.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedDescending }
-    }
+class FilesTableViewController: UITableViewController {
+    var recordingsManager = RecordingsManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,35 +18,28 @@ class FilesTableViewController: UITableViewController
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showPlayback") {
-            let audioFile = RecordedAudio()
-            let indexPath = tableView.indexPathForSelectedRow
-//            let pathArray = [dirPath, fileList[indexPath!.row]]
-//            let filePath = URL.fileURL(withPathComponents: pathArray)
-            let filePath = URL(string: "\(dirPath)/\(fileList[indexPath!.row])")
-
-            audioFile.filePathUrl = filePath
-            audioFile.title = fileList[(indexPath! as NSIndexPath).row]
-
             let navVC = segue.destination as! UINavigationController
             let playbackVC = navVC.topViewController as! PlaybackViewController
+
+            let indexPath = tableView.indexPathForSelectedRow
+            let audioFile = recordingsManager.getFile(atIndex: indexPath!.row)
             playbackVC.recordedAudio = audioFile
         }
     }
-
-    // MARK: - Table view data source
 
     func recordedAudioInserted(_ notification: Notification) {
         tableView.reloadData()
     }
 
+    // MARK: - TableView
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fileList.count
+        return recordingsManager.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "fileCell", for: indexPath)
-        cell.textLabel?.text = fileList[(indexPath as NSIndexPath).row] as String
-
+        cell.textLabel?.text = recordingsManager.getFile(atIndex: indexPath.row).title
         return cell
     }
 
@@ -65,11 +49,7 @@ class FilesTableViewController: UITableViewController
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-//            let pathArray = [dirPath, fileList[indexPath.row]]
-//            let filePath = URL.file(withPathComponents: pathArray)
-            let filePath = URL(fileURLWithPath: "\(dirPath)/\(fileList[indexPath.row])")
-
-            try! FileManager.default.removeItem(at: filePath)
+            recordingsManager.deleteFile(atIndex: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

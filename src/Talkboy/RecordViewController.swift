@@ -16,7 +16,6 @@ extension Notification.Name {
 class RecordViewController: UIViewController, AVAudioRecorderDelegate
 {
     var audioRecorder: AVAudioRecorder!
-    var recordedAudio = RecordedAudio()
     var isRecording: Bool = false {
         didSet {
             if isRecording {
@@ -75,7 +74,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
 
     func recordAudio() {
         audioRecorder.stop()
-        audioRecorder = audioRecorder(timestampedFilePath())
+        audioRecorder = audioRecorder(RecordingsManager.timestampedFilePath())
         audioRecorder.delegate = self
         audioRecorder.record()
     }
@@ -83,20 +82,6 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     func stopRecordingAudio() {
         audioRecorder.stop()
         try! AVAudioSession.sharedInstance().setActive(false)
-    }
-
-    func timestampedFilePath() -> URL {
-        let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let currentDateTime = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "ddMMyyyy-HHmmss"
-        let recordingName = formatter.string(from: currentDateTime)+".m4a"
-//        let pathArray = [dirPath, recordingName]
-//        let filePath = URL.fileURL(withPathComponents: pathArray)
-        let filePath = URL(string: "\(dirPath)/\(recordingName)")
-
-        print(filePath!)
-        return filePath!
     }
 
     func audioRecorder(_ filePath: URL) -> AVAudioRecorder {
@@ -119,9 +104,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     // MARK: - AVAudioRecorder
 
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        recordedAudio.filePathUrl = recorder.url
-        recordedAudio.title = recorder.url.lastPathComponent
-
+        let recordedAudio = RecordedAudio(filePathUrl: recorder.url, title: recorder.url.lastPathComponent)
         NotificationCenter.default.post(name: .recordedAudioSaved, object: nil)
         performSegue(withIdentifier: "showPlayback", sender: recordedAudio)
     }
