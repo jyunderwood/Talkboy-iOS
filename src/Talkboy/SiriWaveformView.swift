@@ -13,10 +13,10 @@ let pi = M_PI
 
 @IBDesignable
 class SiriWaveformView: UIView {
-    private var _phase: CGFloat = 0.0
-    private var _amplitude: CGFloat = 0.0
+    fileprivate var _phase: CGFloat = 0.0
+    fileprivate var _amplitude: CGFloat = 0.0
 
-    @IBInspectable var waveColor: UIColor = UIColor.blackColor()
+    @IBInspectable var waveColor: UIColor = .black
     @IBInspectable var numberOfWaves = 5
     @IBInspectable var primaryWaveLineWidth: CGFloat = 3.0
     @IBInspectable var secondaryWaveLineWidth: CGFloat = 1.0
@@ -31,28 +31,28 @@ class SiriWaveformView: UIView {
         }
     }
 
-    func updateWithLevel(level: CGFloat) {
+    func updateWithLevel(_ level: CGFloat) {
         _phase += phaseShift
         _amplitude = fmax(level, idleAmplitude)
         setNeedsDisplay()
     }
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
-        CGContextClearRect(context, bounds)
+        context?.clear(bounds)
 
         backgroundColor?.set()
-        CGContextFillRect(context, rect)
+        context?.fill(rect)
 
         // Draw multiple sinus waves, with equal phases but altered
         // amplitudes, multiplied by a parable function.
         for waveNumber in 0...numberOfWaves {
             let context = UIGraphicsGetCurrentContext()
 
-            CGContextSetLineWidth(context, (waveNumber == 0 ? primaryWaveLineWidth : secondaryWaveLineWidth))
+            context?.setLineWidth((waveNumber == 0 ? primaryWaveLineWidth : secondaryWaveLineWidth))
 
-            let halfHeight = CGRectGetHeight(bounds) / 2.0
-            let width = CGRectGetWidth(bounds)
+            let halfHeight = bounds.height / 2.0
+            let width = bounds.width
             let mid = width / 2.0
 
             let maxAmplitude = halfHeight - 4.0 // 4 corresponds to twice the stroke width
@@ -62,7 +62,7 @@ class SiriWaveformView: UIView {
             let normedAmplitude = (1.5 * progress - 0.5) * amplitude
 
             let multiplier: CGFloat = 1.0
-            waveColor.colorWithAlphaComponent(multiplier * CGColorGetAlpha(waveColor.CGColor)).set()
+            waveColor.withAlphaComponent(multiplier * waveColor.cgColor.alpha).set()
 
             var x: CGFloat = 0.0
             while x < width + density {
@@ -75,15 +75,15 @@ class SiriWaveformView: UIView {
                 let y = scaling * maxAmplitude * normedAmplitude * CGFloat(sinf(Float(tempCasting))) + halfHeight
 
                 if x == 0 {
-                    CGContextMoveToPoint(context, x, y)
+                    context?.move(to: CGPoint(x: x, y: y))
                 } else {
-                    CGContextAddLineToPoint(context, x, y)
+                    context?.addLine(to: CGPoint(x: x, y: y))
                 }
 
                 x += density
             }
             
-            CGContextStrokePath(context)
+            context?.strokePath()
         }
     }
 }
