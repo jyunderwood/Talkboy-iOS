@@ -8,8 +8,7 @@
 
 import Foundation
 
-class RecordedAudio: NSObject
-{
-    var filePathUrl: NSURL!
-    var title: String!
+struct RecordedAudio {
+    let filePathUrl: URL
+    let title: String
 }

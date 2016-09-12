@@ -7,18 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB1278CD1D86DFC5003A44C6 /* WaveformView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1278CC1D86DFC5003A44C6 /* WaveformView.framework */; };
+		AB181A011D6612E7008F7222 /* RecordingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB181A001D6612E7008F7222 /* RecordingsManager.swift */; };
 		AB5B8C2E1AB36CB3001C7751 /* PlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B8C2D1AB36CB3001C7751 /* PlaybackViewController.swift */; };
 		AB857CB71AB268A1007F44BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB857CB61AB268A1007F44BA /* AppDelegate.swift */; };
 		AB857CB91AB268A1007F44BA /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB857CB81AB268A1007F44BA /* RecordViewController.swift */; };
 		AB857CBC1AB268A1007F44BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB857CBA1AB268A1007F44BA /* Main.storyboard */; };
 		AB857CBE1AB268A1007F44BA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB857CBD1AB268A1007F44BA /* Images.xcassets */; };
-		AB86C8FF1AB654630015DFC7 /* SiriWaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB86C8FE1AB654630015DFC7 /* SiriWaveformView.swift */; };
 		ABAFFFEA1ABDF72E007C235B /* FilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAFFFE91ABDF72E007C235B /* FilesTableViewController.swift */; };
 		ABBCCC631CA43BBF003275F2 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABBCCC621CA43BBF003275F2 /* Launch Screen.storyboard */; };
 		ABBF5DBA1AB380CF007F0C8E /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBF5DB91AB380CF007F0C8E /* RecordedAudio.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB1278CC1D86DFC5003A44C6 /* WaveformView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WaveformView.framework; path = Carthage/Build/iOS/WaveformView.framework; sourceTree = "<group>"; };
+		AB181A001D6612E7008F7222 /* RecordingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingsManager.swift; sourceTree = "<group>"; };
 		AB5B8C2D1AB36CB3001C7751 /* PlaybackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackViewController.swift; sourceTree = "<group>"; };
 		AB857CB11AB268A1007F44BA /* Talkboy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Talkboy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB857CB51AB268A1007F44BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -26,7 +29,6 @@
 		AB857CB81AB268A1007F44BA /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		AB857CBB1AB268A1007F44BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB857CBD1AB268A1007F44BA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		AB86C8FE1AB654630015DFC7 /* SiriWaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiriWaveformView.swift; sourceTree = "<group>"; };
 		ABAFFFE91ABDF72E007C235B /* FilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesTableViewController.swift; sourceTree = "<group>"; };
 		ABBCCC621CA43BBF003275F2 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		ABBF5DB91AB380CF007F0C8E /* RecordedAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
@@ -37,17 +39,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB1278CD1D86DFC5003A44C6 /* WaveformView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB1278CB1D86DFC5003A44C6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB1278CC1D86DFC5003A44C6 /* WaveformView.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AB857CA81AB268A1007F44BA = {
 			isa = PBXGroup;
 			children = (
 				AB857CB31AB268A1007F44BA /* Talkboy */,
 				AB857CB21AB268A1007F44BA /* Products */,
+				AB1278CB1D86DFC5003A44C6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,25 +75,17 @@
 			isa = PBXGroup;
 			children = (
 				ABBF5DB91AB380CF007F0C8E /* RecordedAudio.swift */,
+				AB181A001D6612E7008F7222 /* RecordingsManager.swift */,
 				AB857CB81AB268A1007F44BA /* RecordViewController.swift */,
 				AB5B8C2D1AB36CB3001C7751 /* PlaybackViewController.swift */,
 				ABAFFFE91ABDF72E007C235B /* FilesTableViewController.swift */,
-				AB86C8FE1AB654630015DFC7 /* SiriWaveformView.swift */,
 				AB857CBA1AB268A1007F44BA /* Main.storyboard */,
-				AB857CB41AB268A1007F44BA /* Supporting Files */,
-			);
-			path = Talkboy;
-			sourceTree = "<group>";
-		};
-		AB857CB41AB268A1007F44BA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
 				AB857CB61AB268A1007F44BA /* AppDelegate.swift */,
 				ABBCCC621CA43BBF003275F2 /* Launch Screen.storyboard */,
 				AB857CBD1AB268A1007F44BA /* Images.xcassets */,
 				AB857CB51AB268A1007F44BA /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = Talkboy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,6 +98,7 @@
 				AB857CAD1AB268A1007F44BA /* Sources */,
 				AB857CAE1AB268A1007F44BA /* Frameworks */,
 				AB857CAF1AB268A1007F44BA /* Resources */,
+				AB1278CA1D86DF8C003A44C6 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -111,11 +116,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Jonathan Underwood";
 				TargetAttributes = {
 					AB857CB01AB268A1007F44BA = {
 						CreatedOnToolsVersion = 6.2;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -150,17 +156,35 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		AB1278CA1D86DF8C003A44C6 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/WaveformView.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AB857CAD1AB268A1007F44BA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				ABBF5DBA1AB380CF007F0C8E /* RecordedAudio.swift in Sources */,
-				AB86C8FF1AB654630015DFC7 /* SiriWaveformView.swift in Sources */,
 				AB5B8C2E1AB36CB3001C7751 /* PlaybackViewController.swift in Sources */,
 				AB857CB91AB268A1007F44BA /* RecordViewController.swift in Sources */,
 				AB857CB71AB268A1007F44BA /* AppDelegate.swift in Sources */,
 				ABAFFFEA1ABDF72E007C235B /* FilesTableViewController.swift in Sources */,
+				AB181A011D6612E7008F7222 /* RecordingsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,8 +215,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -201,6 +227,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -213,7 +240,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -235,8 +262,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -244,15 +273,17 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -263,10 +294,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Talkboy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jyunderwood.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -275,10 +311,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Talkboy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jyunderwood.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
