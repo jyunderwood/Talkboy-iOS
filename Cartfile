@@ -1,1 +1,1 @@
-github "jyunderwood/WaveformView-iOS" "master"
+github "jyunderwood/WaveformView-iOS" ~> 2.0
