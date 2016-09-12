@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import WaveformView
 
 extension Notification.Name {
     static let recordedAudioSaved = Notification.Name("recordedAudio.saved")
@@ -29,7 +30,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     }
 
     @IBOutlet weak var recordLabel: UILabel!
-    @IBOutlet weak var waveformView: SiriWaveformView!
+    @IBOutlet weak var waveformView: WaveformView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
